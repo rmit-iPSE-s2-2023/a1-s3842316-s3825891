@@ -12,8 +12,10 @@ struct User: Codable, Identifiable {
     enum CodingKeys: CodingKey {
         case id
         case email
+        case favorites
     }
     
     var id: Int
     var email: String
+    var favorites: [Int]
 }

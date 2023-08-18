@@ -29,6 +29,7 @@ struct ContentView: View {
                     .tag(tab.id)
             }
         }
+        .padding(.bottom, 10.0)
     }
 }
 

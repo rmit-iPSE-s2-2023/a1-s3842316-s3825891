@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct FavoriteView: View {
+    @ObservedObject var userData = DataLoader<User>(resource: "UserData")
+    
     var body: some View {
-        Text("Favorite View")
+        VStack() {
+            TitleView(title: "Favorites")
+            Spacer()
+            if self.userData.data[0].favorites.count == 0 {
+                NoFavoritesView()
+            }
+            Spacer()
+        }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -17,4 +27,40 @@ struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
         FavoriteView()
     }
+}
+
+struct NoFavoritesView: View {
+    var body: some View {
+        VStack(spacing: 20.0) {
+            Image(systemName: "map")
+                .resizable()
+                .frame(width: 75.0, height: 68)
+            Text("No Saved Favorites")
+                .font(.body)
+                .fontWeight(.bold)
+            Text("Search for any suburb and save it to favorite for future reference")
+                .font(.body)
+                .fontWeight(.thin)
+                .multilineTextAlignment(.center)
+            Button(action: searchButtton) {
+                Label("Find a Suburb", systemImage: "magnifyingglass")
+                    .fontWeight(.medium)
+                    .foregroundColor(.white)
+                    .padding(/*@START_MENU_TOKEN@*/.vertical, 12.0/*@END_MENU_TOKEN@*/)
+                    .padding(.horizontal, 30.0)
+                    .font(.title3)
+                    
+            }
+            .background(.green)
+            .cornerRadius(50)
+                
+            
+        }
+        .frame(maxWidth: 275)
+        
+    }
+}
+
+func searchButtton() {
+    
 }
