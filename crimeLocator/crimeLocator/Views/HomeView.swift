@@ -12,8 +12,8 @@ struct HomeView: View {
     
     // Map center - QLD
     @State private var region = MKCoordinateRegion(
-            center: CLLocationCoordinate2D(latitude: -27.46980, longitude: 153.0251),
-            span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
+        center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
+            span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
         )
     
     // Data Loader
@@ -66,7 +66,7 @@ struct ListView: View {
     var report: Report
     
     var body: some View {
-        NavigationLink(destination: HomeListRowView()) { // Destination page
+        NavigationLink(destination: HomeListRowView(report: report)) { // Destination page
             HStack(alignment: .center) {
                 // Pin Icon
                 Image(systemName: "mappin.circle.fill")
