@@ -8,8 +8,11 @@
 import SwiftUI
 
 struct HomeView: View {
+    @ObservedObject var users = DataLoader<User>(resource: "UserData")
+    @ObservedObject var reports = DataLoader<Report>(resource: "ReportData")
+    
     var body: some View {
-        Text("HOME VIEW")
+        Text("Home View")
     }
 }
 
