@@ -40,12 +40,55 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5) // Drop shadow
                 
+                // Recent Activities List
+                List {
+                    Text("Recent Activities")
+                        .foregroundColor(.gray)
+                        .font(.caption)
+                    ListView(title: "Location 1", desc: "Desc for location 1")
+                    ListView(title: "Location 2", desc: "Desc for location 2")
+                    ListView(title: "Location 3", desc: "Desc for location 1")
+                    ListView(title: "Location 4", desc: "Desc for location 2")
+                    ListView(title: "Location 5", desc: "Desc for location 1")
+                    ListView(title: "Location 6", desc: "Desc for location 2")
+                }
+                .padding(.top, -10)
+                
                 // Pushes Search bar and map to top
                 Spacer()
             }
         }
     }
 }
+
+// List Items View
+struct ListView: View {
+    var title: String
+    var desc: String
+    
+    var body: some View {
+        NavigationLink(destination: HomeListRowView()) { // Destination page
+            HStack(alignment: .center) {
+                
+                // Pin Icon
+                Image(systemName: "mappin.circle.fill")
+                    .foregroundColor(.orange)
+                    .font(.title2)
+                
+                // Title/Desc
+                VStack(alignment: .leading) {
+                    Text(title)
+                        .font(.subheadline)
+                    Text(desc)
+                        .foregroundColor(.gray)
+                        .font(.caption)
+                }
+            }
+        }
+    }
+}
+
+
 
 
 
