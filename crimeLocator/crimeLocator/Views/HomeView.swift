@@ -15,6 +15,10 @@ struct HomeView: View {
             center: CLLocationCoordinate2D(latitude: -27.46980, longitude: 153.0251),
             span: MKCoordinateSpan(latitudeDelta: 0.05, longitudeDelta: 0.05)
         )
+    
+    // Data Loader
+    @ObservedObject var dataLoader = DataLoader<Report>(resource: "ReportData")
+
 
     var body: some View {
         NavigationView {
@@ -40,17 +44,13 @@ struct HomeView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5) // Drop shadow
                 
-                // Recent Activities List
                 List {
                     Text("Recent Activities")
                         .foregroundColor(.gray)
                         .font(.caption)
-                    ListView(title: "Location 1", desc: "Desc for location 1")
-                    ListView(title: "Location 2", desc: "Desc for location 2")
-                    ListView(title: "Location 3", desc: "Desc for location 1")
-                    ListView(title: "Location 4", desc: "Desc for location 2")
-                    ListView(title: "Location 5", desc: "Desc for location 1")
-                    ListView(title: "Location 6", desc: "Desc for location 2")
+                    ForEach(dataLoader.data) { report in
+                        ListView(report: report)
+                    }
                 }
                 .padding(.top, -10)
                 
@@ -63,23 +63,21 @@ struct HomeView: View {
 
 // List Items View
 struct ListView: View {
-    var title: String
-    var desc: String
+    var report: Report
     
     var body: some View {
         NavigationLink(destination: HomeListRowView()) { // Destination page
             HStack(alignment: .center) {
-                
                 // Pin Icon
                 Image(systemName: "mappin.circle.fill")
                     .foregroundColor(.orange)
                     .font(.title2)
-                
+
                 // Title/Desc
                 VStack(alignment: .leading) {
-                    Text(title)
+                    Text(report.type)
                         .font(.subheadline)
-                    Text(desc)
+                    Text(report.location)
                         .foregroundColor(.gray)
                         .font(.caption)
                 }
