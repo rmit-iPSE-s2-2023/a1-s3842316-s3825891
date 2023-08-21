@@ -33,3 +33,24 @@ struct TitleView: View {
         .padding(.leading, 25.0)
     }
 }
+
+struct SearchBar: View {
+    var data: [Report]
+    var body: some View {
+        NavigationLink(destination: SearchView(reports: self.data)) {
+            HStack() {
+                Image(systemName: "magnifyingglass") // Search icon
+                    .foregroundColor(.gray)
+                Text("Search for suburb")
+                    .foregroundColor(.gray)
+                Spacer()
+            }
+            .padding(10)
+            .frame(maxWidth: .infinity)
+            .background(Color(.systemGray5))
+            .cornerRadius(10)
+        }
+        .buttonStyle(PlainButtonStyle())
+    }
+}
+

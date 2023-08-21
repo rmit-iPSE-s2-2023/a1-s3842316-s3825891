@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A19D04E2A8FA5220090B1DC /* HomeSearchPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19D04D2A8FA5220090B1DC /* HomeSearchPageView.swift */; };
 		1A19D0502A8FB1770090B1DC /* HomeListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19D04F2A8FB1770090B1DC /* HomeListRowView.swift */; };
 		1A19D0522A8FC2160090B1DC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19D0512A8FC2160090B1DC /* Utils.swift */; };
 		D5A1EEBC2A80B30500A3FE99 /* crimeLocatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1EEBB2A80B30500A3FE99 /* crimeLocatorApp.swift */; };
@@ -24,10 +23,11 @@
 		D5B688192A8E1B5C0070CA0C /* UserData.json in Resources */ = {isa = PBXBuildFile; fileRef = D5B688112A8E10B30070CA0C /* UserData.json */; };
 		D5B6881B2A8E1D3F0070CA0C /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B6881A2A8E1D3F0070CA0C /* Report.swift */; };
 		D5B6881F2A8F80AA0070CA0C /* CommonViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B6881E2A8F80AA0070CA0C /* CommonViews.swift */; };
+		D5B688212A9308820070CA0C /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B688202A9308820070CA0C /* SearchView.swift */; };
+		D5B688232A93105F0070CA0C /* SuburbView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B688222A93105F0070CA0C /* SuburbView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1A19D04D2A8FA5220090B1DC /* HomeSearchPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSearchPageView.swift; sourceTree = "<group>"; };
 		1A19D04F2A8FB1770090B1DC /* HomeListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListRowView.swift; sourceTree = "<group>"; };
 		1A19D0512A8FC2160090B1DC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		D5A1EEB82A80B30500A3FE99 /* crimeLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crimeLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -45,6 +45,8 @@
 		D5B688172A8E120A0070CA0C /* DataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataLoader.swift; sourceTree = "<group>"; };
 		D5B6881A2A8E1D3F0070CA0C /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		D5B6881E2A8F80AA0070CA0C /* CommonViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonViews.swift; sourceTree = "<group>"; };
+		D5B688202A9308820070CA0C /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
+		D5B688222A93105F0070CA0C /* SuburbView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuburbView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +105,10 @@
 				D5B688062A8E087C0070CA0C /* RecentView.swift */,
 				D5B688082A8E08A20070CA0C /* SettingView.swift */,
 				D5B6881E2A8F80AA0070CA0C /* CommonViews.swift */,
-				1A19D04D2A8FA5220090B1DC /* HomeSearchPageView.swift */,
 				1A19D04F2A8FB1770090B1DC /* HomeListRowView.swift */,
 				1A19D0512A8FC2160090B1DC /* Utils.swift */,
+				D5B688202A9308820070CA0C /* SearchView.swift */,
+				D5B688222A93105F0070CA0C /* SuburbView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -201,10 +204,11 @@
 				D5A1EEBE2A80B30500A3FE99 /* ContentView.swift in Sources */,
 				1A19D0522A8FC2160090B1DC /* Utils.swift in Sources */,
 				D5B688092A8E08A20070CA0C /* SettingView.swift in Sources */,
-				1A19D04E2A8FA5220090B1DC /* HomeSearchPageView.swift in Sources */,
 				D5B688182A8E120A0070CA0C /* DataLoader.swift in Sources */,
+				D5B688212A9308820070CA0C /* SearchView.swift in Sources */,
 				D5B6881B2A8E1D3F0070CA0C /* Report.swift in Sources */,
 				D5B688072A8E087C0070CA0C /* RecentView.swift in Sources */,
+				D5B688232A93105F0070CA0C /* SuburbView.swift in Sources */,
 				D5A1EEBC2A80B30500A3FE99 /* crimeLocatorApp.swift in Sources */,
 				D5B688162A8E11850070CA0C /* User.swift in Sources */,
 			);

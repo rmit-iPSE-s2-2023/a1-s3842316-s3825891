@@ -3,6 +3,7 @@
         "id": 1,
         "type": "Theft",
         "date": "2023-08-17 00:00:00",
+        "suburb": "Central Buiness District (CBD)",
         "location": "Brisbane",
         "postcode": 4029
     },
@@ -10,6 +11,7 @@
         "id": 2,
         "type": "Violence",
         "date": "2023-08-17 00:04:00",
+        "suburb": "E",
         "location": "Brisbane",
         "postcode": 4116
     },
@@ -17,6 +19,7 @@
         "id": 3,
         "type": "Unlawful Entry",
         "date": "2023-08-17 10:20:00",
+        "suburb": "A",
         "location": "Brisbane",
         "postcode": 4110
     },
@@ -24,6 +27,7 @@
         "id": 4,
         "type": "Other Theft (excl. Unlawful Entry)",
         "date": "2023-08-17 00:00:00",
+        "suburb": "B",
         "location": "Brisbane",
         "postcode": 4151
     },
@@ -31,6 +35,7 @@
         "id": 5,
         "type": "Drug Offences",
         "date": "2023-08-17 09:50:00",
+        "suburb": "D",
         "location": "Brisbane",
         "postcode": 4000
     },

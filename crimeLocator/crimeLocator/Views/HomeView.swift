@@ -17,26 +17,16 @@ struct HomeView: View {
         )
     
     // Data Loader
-    @ObservedObject var dataLoader = DataLoader<Report>(resource: "ReportData")
+    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
 
 
     var body: some View {
-        NavigationView {
-            VStack {
-                // Search bar as a NavigationLink
-                NavigationLink(destination: HomeSearchPageView()) {
-                    HStack {
-                        Image(systemName: "magnifyingglass") // Search icon
-                            .foregroundColor(.gray)
-                        Text("Search")
-                    }
-                    .padding(10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .background(Color(.systemGray5))
-                    .cornerRadius(10)
-                    .padding(.horizontal)
-                }
-                .buttonStyle(PlainButtonStyle())
+        NavigationStack {
+            VStack(alignment: .leading, spacing: 20.0) {
+                    Text("Welcome Back!")
+                        .font(.largeTitle)
+                        .padding(.top, 10.0)                    // Search bar as a NavigationLink
+                SearchBar(data: reportData.data)
                 
                 // Map
                 Map(coordinateRegion: $region)
@@ -48,7 +38,7 @@ struct HomeView: View {
                     Text("Recent Activities")
                         .foregroundColor(.gray)
                         .font(.caption)
-                    ForEach(dataLoader.data) { report in
+                    ForEach(reportData.data) { report in
                         ListView(report: report)
                     }
                 }
@@ -57,6 +47,7 @@ struct HomeView: View {
                 // Pushes Search bar and map to top
                 Spacer()
             }
+            .padding(.horizontal, 25.0)
         }
     }
 }
@@ -77,7 +68,7 @@ struct ListView: View {
                 VStack(alignment: .leading) {
                     Text(report.type)
                         .font(.subheadline)
-                    Text(report.location)
+                    Text("\(report.suburb) - \(report.location)")
                         .foregroundColor(.gray)
                         .font(.caption)
                 }

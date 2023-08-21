@@ -74,6 +74,6 @@ struct DataView: View {
 
 struct HomeListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListRowView(report: Report(id: 1, type: "Theft", date: Date(), location: "Brisbane", postcode: 4029))
+        HomeListRowView(report: Report(id: 1, type: "Theft", date: Date(), suburb: "A", location: "Brisbane", postcode: 4029))
     }
 }

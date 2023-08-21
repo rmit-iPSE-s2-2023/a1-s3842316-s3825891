@@ -12,6 +12,7 @@ struct Report: Codable, Identifiable {
         case id
         case type
         case date
+        case suburb
         case location
         case postcode
     }
@@ -19,6 +20,7 @@ struct Report: Codable, Identifiable {
     var id: Int
     var type: String
     var date: Date
+    var suburb: String
     var location: String
     var postcode: Int
 }

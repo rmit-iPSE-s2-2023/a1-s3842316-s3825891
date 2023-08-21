@@ -27,6 +27,7 @@ struct ContentView: View {
                         Text(tab.title)
                     }
                     .tag(tab.id)
+                    .background(.black.opacity(0.0))
             }
         }
         .padding(.bottom, 10.0)
