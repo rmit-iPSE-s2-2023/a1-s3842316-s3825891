@@ -30,7 +30,7 @@ struct SearchView: View {
                     }
                 }
             } else {
-                Text("No suburb found containting '\(searchText)'")
+                Text("'\(searchText)' suburb not found!")
             }
         }
         .searchable(text: $searchText)

@@ -11,15 +11,17 @@ struct FavoriteView: View {
     @ObservedObject var userData = DataLoader<User>(resource: "UserData")
     
     var body: some View {
-        VStack() {
-            TitleView(title: "Favorites")
-            Spacer()
-            if self.userData.data[0].favorites.count == 0 {
-                NoFavoritesView()
+        NavigationStack {
+            VStack() {
+                TitleView(title: "Favorites")
+                Spacer()
+                if self.userData.data[0].favorites.count == 0 {
+                    NoFavoritesView()
+                }
+                Spacer()
             }
-            Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
     }
 }
 
@@ -30,7 +32,10 @@ struct FavoriteView_Previews: PreviewProvider {
 }
 
 struct NoFavoritesView: View {
+    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
+    
     var body: some View {
+        
         VStack(spacing: 20.0) {
             Image(systemName: "map")
                 .resizable()
@@ -42,22 +47,21 @@ struct NoFavoritesView: View {
                 .font(.body)
                 .fontWeight(.thin)
                 .multilineTextAlignment(.center)
-            Button(action: searchButtton) {
+            NavigationLink(destination: SearchView(reports: self.reportData.data)) {
                 Label("Find a Suburb", systemImage: "magnifyingglass")
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                     .padding(/*@START_MENU_TOKEN@*/.vertical, 12.0/*@END_MENU_TOKEN@*/)
                     .padding(.horizontal, 30.0)
                     .font(.title3)
-                    
+                
             }
             .background(.green)
             .cornerRadius(50)
-                
+            
             
         }
         .frame(maxWidth: 275)
-        
     }
 }
 
