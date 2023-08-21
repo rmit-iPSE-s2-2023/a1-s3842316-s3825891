@@ -11,19 +11,31 @@ struct SearchView: View {
     @State var searchText = ""
     
     var reports: [Report]
+    var filteredReports: [Report] {
+        var res: [Report] = self.reports
+        if !searchText.isEmpty {
+            res = self.reports.filter({$0.suburb.contains(searchText)})
+        }
+        return res.sorted {
+            $0.suburb < $1.suburb
+        }
+    }
     
     var body: some View {
         NavigationView {
-            List {
-                ForEach(self.reports) { report in
-                    SuburbListView(suburb: report.suburb)
+            if filteredReports.count > 0 {
+                List {
+                    ForEach(filteredReports) { report in
+                        SuburbListView(suburb: report.suburb)
+                    }
                 }
+            } else {
+                Text("No suburb found containting '\(searchText)'")
             }
         }
         .searchable(text: $searchText)
         .navigationTitle("Suburbs")
         .navigationBarTitleDisplayMode(.inline)
-        
     }
     
     
