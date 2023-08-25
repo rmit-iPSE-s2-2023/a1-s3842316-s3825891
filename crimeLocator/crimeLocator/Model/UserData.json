@@ -2,11 +2,13 @@
     {
         "id": 1,
         "email": "johndoe@gmail.com",
+        "fullName": "John Doe",
         "favorites": []
     },
     {
         "id": 2,
         "email": "johndoe2@gmail.com",
+        "fullName": "John Doe 2",
         "favorites": [1, 5, 10]
     }
 ]

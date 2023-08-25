@@ -30,7 +30,6 @@ struct ContentView: View {
                     .background(.black.opacity(0.0))
             }
         }
-        .padding(.bottom, 10.0)
     }
 }
 
