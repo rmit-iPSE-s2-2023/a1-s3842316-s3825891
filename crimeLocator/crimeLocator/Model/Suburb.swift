@@ -8,7 +8,8 @@
 import Foundation
 
 struct Suburb: Codable, Identifiable, Hashable {
-    enum CodingKeys: CodingKey {
+    
+    enum CodingKeys: String, CodingKey {
         case id
         case name
         case postcode

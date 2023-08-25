@@ -26,7 +26,8 @@ struct HomeView: View {
                     .font(.title)
                     .padding(.top, 10.0)
                 
-                SearchBar(data: self.reports, user: self.user)
+                SearchBar(data: self.reports, user: user)
+//                Text("\(user.favorites[0].name)")
                 
                 Map(coordinateRegion: $region)
                     .frame(height: 380)
@@ -36,8 +37,8 @@ struct HomeView: View {
                 ListView(data: reports)
                     .padding(.top, -10.0)
             }
+            .padding(.horizontal, 25.0)
         }
-        .padding(.horizontal, 25.0)
     }
 }
 
@@ -66,9 +67,9 @@ struct ListViewItem: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        @ObservedObject var userData = DataLoader<User>(resource: "UserData")
-        @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
-        HomeView(user: userData.data[1], reports: reportData.data)
+//        var userData = DataLoader<User>(resource: "UserData")
+        let reportData = DataLoader<Report>(resource: "ReportData")
+        HomeView(user: User.getUser(email: "johndoe2@gmail.com"), reports: reportData.data)
     }
 }
 

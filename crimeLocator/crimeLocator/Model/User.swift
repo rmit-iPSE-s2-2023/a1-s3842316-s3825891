@@ -7,9 +7,9 @@
 
 import Foundation
 
-class User: Codable, Identifiable {
+class User: Codable, Identifiable, ObservableObject {
     
-    enum CodingKeys: CodingKey {
+    enum CodingKeys: String, CodingKey {
         case email
         case fullName
         case favorites
@@ -18,12 +18,48 @@ class User: Codable, Identifiable {
     var id = UUID()
     var email: String
     var fullName: String
-    var favorites: [Suburb]
-
+    
+    @Published var favorites: [Suburb]
+    static private var allUsers = [User]()
+    
+    required init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.email = try container.decode(String.self, forKey: .email)
+        self.fullName = try container.decode(String.self, forKey: .fullName)
+        self.favorites = try container.decode([Suburb].self, forKey: .favorites)
+    }
+    
+    init(email: String, fullName: String) {
+        self.email = email
+        self.fullName = fullName
+        self.favorites = [Suburb]()
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(email, forKey: .email)
+        try container.encode(fullName, forKey: .fullName)
+        try container.encode(favorites, forKey: .favorites)
+    }
     
     func removeFavorite(suburb: Suburb) {
         self.favorites = self.favorites.filter( {
             return $0 != suburb
        })
+    }
+    
+    func addFavorite(suburb: Suburb) {
+        self.favorites.append(suburb)
+    }
+    
+    static func getUser(email: String) -> User {
+        if allUsers.count == 0 {
+            User.allUsers = DataLoader<User>(resource: "UserData").data
+        }
+        
+        if let user = User.allUsers.first(where: {$0.email == email}) {
+            return user
+        }
+        return User(email: "testUser@gmail.com", fullName: "test user")
     }
 }

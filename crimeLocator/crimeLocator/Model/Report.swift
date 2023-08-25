@@ -7,12 +7,19 @@
 
 import Foundation
 
-struct Report: Codable, Identifiable {
-    enum CodingKeys: CodingKey {
+class Report: Codable, Identifiable {
+    enum CodingKeys: String, CodingKey {
         case id
         case type
         case date
         case suburb
+    }
+    
+    init(id: Int, type: String, date: Date, suburb: Suburb) {
+        self.id = id
+        self.type = type
+        self.date = date
+        self.suburb = suburb
     }
     
     var id: Int

@@ -8,16 +8,16 @@
 import SwiftUI
 
 struct FavoriteView: View {
-    @ObservedObject var userData = DataLoader<User>(resource: "UserData")
-    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
+    @ObservedObject var user: User
+    var reports: [Report]
     
     var body: some View {
         NavigationStack {
             VStack() {
                 TitleView(title: "Favorites")
                 Spacer()
-                if self.userData.data[0].favorites.count == 0 {
-                    NoFavoritesView(reports: reportData.data, user: userData.data[1])
+                if self.user.favorites.count == 0 {
+                    NoFavoritesView(reports: reports, user: user)
                 }
                 Spacer()
             }
@@ -28,7 +28,8 @@ struct FavoriteView: View {
 
 struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
-        FavoriteView()
+        let reportData = DataLoader<Report>(resource: "ReportData")
+        FavoriteView(user: User.getUser(email: "johndoe2@gmail.com"), reports: reportData.data)
     }
 }
 
