@@ -26,7 +26,7 @@ struct SearchView: View {
             if filteredReports.count > 0 {
                 List {
                     ForEach(filteredReports) { report in
-                        SuburbListView(suburb: report.suburb)
+                        SuburbListView(suburb: report.suburb, reports: filteredReports)
                     }
                 }
             } else {
@@ -51,9 +51,10 @@ struct SearchView_Previews: PreviewProvider {
 // List Items View
 struct SuburbListView: View {
     var suburb: String
+    var reports: [Report]
     
     var body: some View {
-        NavigationLink(destination: SuburbView()) { // Destination page
+        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports)) { // Destination page
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text(self.suburb)

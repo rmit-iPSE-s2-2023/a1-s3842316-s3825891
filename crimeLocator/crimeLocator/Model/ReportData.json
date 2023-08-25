@@ -39,4 +39,12 @@
         "location": "Brisbane",
         "postcode": 4000
     },
+    {
+        "id": 6,
+        "type": "Theft",
+        "date": "2023-08-17 00:00:00",
+        "suburb": "Central Buiness District (CBD)",
+        "location": "Brisbane",
+        "postcode": 4029
+    },
 ]
