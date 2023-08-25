@@ -39,7 +39,7 @@ struct SearchBar: View {
     var user: User
     
     var body: some View {
-        NavigationLink(destination: SearchView(user: self.user, reports: self.data)) {
+        NavigationLink(destination: SearchView(user: user, reports: self.data)) {
             HStack() {
                 Image(systemName: "magnifyingglass") // Search icon
                     .foregroundColor(.gray)

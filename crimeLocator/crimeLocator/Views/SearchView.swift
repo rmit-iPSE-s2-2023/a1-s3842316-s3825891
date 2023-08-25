@@ -10,7 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @State var searchText = ""
     
-    var user: User
+    @ObservedObject var user: User
     var reports: [Report]
     var filteredReports: [Report] {
         var res: [Report] = self.reports
@@ -39,7 +39,7 @@ struct SearchView: View {
             if self.filteredReports.count > 0 {
                 List {
                     ForEach(self.uniqueSuburbReports) { report in
-                        SuburbListView(suburb: report.suburb, reports: self.filteredReports, user: self.user)
+                        SuburbListView(user: user, suburb: report.suburb, reports: self.filteredReports)
                     }
                 }
             } else {
@@ -54,23 +54,25 @@ struct SearchView: View {
 
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
-        @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
-        @ObservedObject var userData = DataLoader<User>(resource: "UserData")
-        SearchView(user: userData.data[1], reports: reportData.data)
+        let reportData = DataLoader<Report>(resource: "ReportData")
+//        var userData = DataLoader<User>(resource: "UserData")
+        SearchView(user: User.getUser(email: "johndoe@gmail.com"), reports: reportData.data)
     }
 }
 
 // List Items View
 struct SuburbListView: View {
+    @ObservedObject var user: User
     var suburb: Suburb
     var reports: [Report]
-    var user: User
+    
     
     var body: some View {
-        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports, user: self.user, isFavorite: user.favorites.contains(suburb))) { // Destination page
+        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports, user: self.user, isFavorite: user.favorites.filter({$0.id == suburb.id}).count > 0)) { // Destination page
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text(self.suburb.name)
+//                    Text("\(user.favorites.filter({$0.id == suburb.id}).count > 0 ? "true" : "false")")
                 }
             }
         }

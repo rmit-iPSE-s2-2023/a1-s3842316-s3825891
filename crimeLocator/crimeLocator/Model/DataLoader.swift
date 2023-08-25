@@ -7,16 +7,18 @@
 
 import Foundation
 
-class DataLoader<T: Codable>: ObservableObject {
-    @Published var data = [T]()
+class DataLoader<T: Codable> {
+    var data = [T]()
+    var resource: String
     
     init(resource: String) {
-        loaddata(resource: resource)
+        self.resource = resource
+        loaddata()
     }
     
-    func loaddata(resource: String) {
+    func loaddata() {
         
-        guard let url = Bundle.main.url(forResource: resource, withExtension: "json")
+        guard let url = Bundle.main.url(forResource: self.resource, withExtension: "json")
         else {
             print("JSON \(resource) could be found")
             return
