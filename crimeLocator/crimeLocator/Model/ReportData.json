@@ -6,7 +6,7 @@
         "suburb": {
             "id": 1,
             "name": "A",
-            "postcode": 4024,
+            "postcode": 4000,
             "city": "Brisbane"
         }
     },
@@ -17,7 +17,7 @@
         "suburb": {
             "id": 2,
             "name": "B",
-            "postcode": 4025,
+            "postcode": 4006,
             "city": "Brisbane"
         }
     },
@@ -28,7 +28,7 @@
         "suburb": {
             "id": 3,
             "name": "D",
-            "postcode": 4026,
+            "postcode": 4005,
             "city": "Brisbane"
         }
     },
@@ -39,7 +39,7 @@
         "suburb": {
             "id": 4,
             "name": "C",
-            "postcode": 4027,
+            "postcode": 4169,
             "city": "Brisbane"
         }
     },
@@ -50,7 +50,7 @@
         "suburb": {
             "id": 6,
             "name": "Central Business District (CBD)",
-            "postcode": 4024,
+            "postcode": 4121,
             "city": "Brisbane"
         }
     },
@@ -61,7 +61,7 @@
         "suburb": {
             "id": 6,
             "name": "Central Business District (CBD)",
-            "postcode": 4024,
+            "postcode": 4068,
             "city": "Brisbane"
         }
     },

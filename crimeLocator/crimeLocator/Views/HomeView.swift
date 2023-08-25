@@ -17,7 +17,8 @@ struct HomeView: View {
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
         span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta + 0.1, longitudeDelta: MapConstants.defaultLongitudeDelta + 0.1)
     )
-
+    
+    @State private var locations: [Locations] = []
     
     var body: some View {
         NavigationStack {
@@ -27,19 +28,46 @@ struct HomeView: View {
                     .padding(.top, 10.0)
                 
                 SearchBar(data: self.reports, user: user)
-//                Text("\(user.favorites[0].name)")
+                // Text("\(user.favorites[0].name)")
                 
-                Map(coordinateRegion: $region)
+                Map(coordinateRegion: $region,
+                    annotationItems: locations,
+                    annotationContent: { location in
+                    MapMarker(coordinate: location.coordinates, tint: .red)
+                })
                     .frame(height: 380)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: -5)
-
+                
                 ListView(data: reports)
                     .padding(.top, -10.0)
             }
             .padding(.horizontal, 25.0)
+            .onAppear {
+                for report in reports {
+                    geocodePostcode(postcode: String(report.suburb.postcode), report: report)
+                }
+            }
         }
     }
+    // Postcode to coordinate converter
+    private func geocodePostcode(postcode: String, report: Report) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(postcode) { placemarks, error in
+            if let error = error {
+                print("Geocoding error: \(error.localizedDescription)")
+                return
+            }
+            
+            // Coordinate
+            if let location = placemarks?.first?.location {
+                let newLocation = Locations(name: report.suburb.city, postcode: report.suburb.postcode, coordinates: location.coordinate)
+                    locations.append(newLocation)
+                
+            }
+        }
+    }
+    
 }
 
 // List Items View
@@ -55,7 +83,7 @@ struct ListViewItem: View {
                 
                 VStack(alignment: .leading) {
                     Text(report.type)
-                        .font(.title3)
+                        .font(.headline)
                     Text("\(report.suburb.name) - \(report.suburb.city)")
                         .foregroundColor(.gray)
                         .font(.caption)
