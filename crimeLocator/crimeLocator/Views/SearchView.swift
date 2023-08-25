@@ -21,12 +21,24 @@ struct SearchView: View {
         }
     }
     
+    var uniqueSuburbReports: [Report] {
+        var suburbs = [String]()
+        var res = [Report]()
+        for report in self.filteredReports {
+            if !suburbs.contains(report.suburb) {
+                res.append(report)
+                suburbs.append(report.suburb)
+            }
+        }
+        return res
+    }
+    
     var body: some View {
         NavigationView {
-            if filteredReports.count > 0 {
+            if self.filteredReports.count > 0 {
                 List {
-                    ForEach(filteredReports) { report in
-                        SuburbListView(suburb: report.suburb, reports: filteredReports)
+                    ForEach(self.uniqueSuburbReports) { report in
+                        SuburbListView(suburb: report.suburb, reports: self.filteredReports)
                     }
                 }
             } else {
@@ -37,8 +49,6 @@ struct SearchView: View {
         .navigationTitle("Suburbs")
         .navigationBarTitleDisplayMode(.inline)
     }
-    
-    
 }
 
 struct SearchView_Previews: PreviewProvider {
