@@ -32,14 +32,13 @@ struct HomeView: View {
                     .padding(.top, 10.0)
                 SearchBar(data: reportData.data)
                 Map(coordinateRegion: $region)
-                    .frame(width: .infinity, height: 380)
+                    .frame(height: 380)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: -5)
                 
                 
                 ListView(data: reportData.data)
                     .padding(.top, -10.0)
-                    .frame(width: .infinity)
             }
             
         }
@@ -64,7 +63,7 @@ struct ListViewItem: View {
                         .font(.title3)
                     Text("\(report.suburb) - \(report.location)")
                         .foregroundColor(.gray)
-                        .font(.subheadline)
+                        .font(.caption)
                 }
             }
         }
@@ -89,7 +88,7 @@ struct ListView: View {
             } header: {
                 Text("Recent Activities")
                     .foregroundColor(.gray)
-                    .font(.body)
+                    .font(.caption)
             }
         }
         .scrollContentBackground(.hidden)
