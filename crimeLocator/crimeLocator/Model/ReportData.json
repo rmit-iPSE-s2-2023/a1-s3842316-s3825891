@@ -3,48 +3,66 @@
         "id": 1,
         "type": "Theft",
         "date": "2023-08-17 00:00:00",
-        "suburb": "Central Buiness District (CBD)",
-        "location": "Brisbane",
-        "postcode": 4029
+        "suburb": {
+            "id": 1,
+            "name": "A",
+            "postcode": 4024,
+            "city": "Brisbane"
+        }
     },
     {
         "id": 2,
         "type": "Violence",
         "date": "2023-08-17 00:04:00",
-        "suburb": "E",
-        "location": "Brisbane",
-        "postcode": 4116
+        "suburb": {
+            "id": 2,
+            "name": "B",
+            "postcode": 4025,
+            "city": "Brisbane"
+        }
     },
     {
         "id": 3,
         "type": "Unlawful Entry",
         "date": "2023-08-17 10:20:00",
-        "suburb": "A",
-        "location": "Brisbane",
-        "postcode": 4110
+        "suburb": {
+            "id": 3,
+            "name": "D",
+            "postcode": 4026,
+            "city": "Brisbane"
+        }
     },
     {
         "id": 4,
         "type": "Other Theft (excl. Unlawful Entry)",
         "date": "2023-08-17 00:00:00",
-        "suburb": "B",
-        "location": "Brisbane",
-        "postcode": 4151
+        "suburb": {
+            "id": 4,
+            "name": "C",
+            "postcode": 4027,
+            "city": "Brisbane"
+        }
     },
     {
         "id": 5,
         "type": "Drug Offences",
         "date": "2023-08-17 09:50:00",
-        "suburb": "D",
-        "location": "Brisbane",
-        "postcode": 4000
+        "suburb": {
+            "id": 6,
+            "name": "Central Business District (CBD)",
+            "postcode": 4024,
+            "city": "Brisbane"
+        }
     },
     {
         "id": 6,
         "type": "Theft",
         "date": "2023-08-17 00:00:00",
-        "suburb": "Central Buiness District (CBD)",
-        "location": "Brisbane",
-        "postcode": 4029
+        "suburb": {
+            "id": 6,
+            "name": "Central Business District (CBD)",
+            "postcode": 4024,
+            "city": "Brisbane"
+        }
     },
 ]

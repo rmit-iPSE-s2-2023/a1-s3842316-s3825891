@@ -9,16 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
-    var tabs = [
-        TabItem(image: "doc.text.image", title: "Today", view: AnyView(HomeView())),
-        TabItem(image: "bookmark.circle", title: "Favorites", view: AnyView(FavoriteView())),
-        TabItem(image: "clock.arrow.circlepath", title: "Recent", view: AnyView(RecentView())),
-        TabItem(image: "gearshape", title: "Settings", view: AnyView(SettingView()))
-    ]
+    @ObservedObject var userData = DataLoader<User>(resource: "UserData")
+    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
     
-    var view = HomeView()
     
     var body: some View {
+        
+        var tabs = [
+            TabItem(image: "doc.text.image", title: "Today", view: AnyView(HomeView(user: userData.data[1], reports: reportData.data))),
+            TabItem(image: "bookmark.circle", title: "Favorites", view: AnyView(FavoriteView())),
+            TabItem(image: "clock.arrow.circlepath", title: "Recent", view: AnyView(RecentView())),
+            TabItem(image: "gearshape", title: "Settings", view: AnyView(SettingView())),
+        ]
+        
         TabView(selection: .constant(1)) {
             ForEach(tabs) { tab in
                 tab.view
@@ -44,4 +47,10 @@ struct TabItem: Identifiable {
     var image: String
     var title: String
     var view: AnyView
+    
+    init(image: String, title: String, view: AnyView) {
+        self.image = image
+        self.title = title
+        self.view = view
+    }
 }

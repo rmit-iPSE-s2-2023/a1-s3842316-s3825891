@@ -1,15 +1,33 @@
 [
     {
-        "id": 1,
         "email": "johndoe@gmail.com",
         "fullName": "John Doe",
-        "favorites": []
+        "favorites": [
+            {
+                "id": 6,
+                "name": "Central Business District (CBD)",
+                "postcode": 4024,
+                "city": "Brisbane"
+            }
+        ]
     },
     {
-        "id": 2,
         "email": "johndoe2@gmail.com",
         "fullName": "John Doe 2",
-        "favorites": ["Central Buiness District (CBD)"]
+        "favorites": [
+            {
+                "id": 6,
+                "name": "Central Buiness District (CBD)",
+                "city": "Brisbane",
+                "postcode": 4024
+            },
+            {
+                "id": 4,
+                "name": "A",
+                "city": "Brisbane",
+                "postcode": 2024
+            }
+        ]
     }
 ]
  

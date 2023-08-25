@@ -10,20 +10,20 @@ import Foundation
 class User: Codable, Identifiable {
     
     enum CodingKeys: CodingKey {
-        case id
         case email
         case fullName
         case favorites
     }
     
-    var id: Int
+    var id = UUID()
     var email: String
     var fullName: String
-    var favorites: [String]
+    var favorites: [Suburb]
+
     
-    func removeFavorite(suburb: String) {
+    func removeFavorite(suburb: Suburb) {
         self.favorites = self.favorites.filter( {
-           return $0 != suburb
+            return $0 != suburb
        })
     }
 }

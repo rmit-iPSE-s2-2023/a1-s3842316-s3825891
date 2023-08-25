@@ -9,12 +9,10 @@ import SwiftUI
 import MapKit
 
 struct SuburbView: View {
-    var suburb: String
+    var suburb: Suburb
     var reports: [Report]
     var user: User
-    var isFavorite: Bool {
-        return self.user.favorites.contains(suburb)
-    }
+    @State var isFavorite: Bool
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
@@ -25,7 +23,7 @@ struct SuburbView: View {
         VStack(alignment: .leading) {
             
             HStack {
-                Text("\(suburb)")
+                Text("\(suburb.name)")
                     .font(.title)
                 Spacer()
                 Button {
@@ -52,8 +50,9 @@ struct SuburbView_Previews: PreviewProvider {
     static var previews: some View {
         @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
         @ObservedObject var userData = DataLoader<User>(resource: "UserData")
-        SuburbView(suburb: "Central Buiness District (CBD)", reports: reportData.data.filter({
-            $0.suburb == "Central Buiness District (CBD)"
-        }), user: userData.data[1])
+        
+        SuburbView(suburb: userData.data[1].favorites[0], reports: reportData.data.filter({
+            $0.suburb.name == userData.data[1].favorites[0].name
+        }), user: userData.data[1], isFavorite: false)
     }
 }

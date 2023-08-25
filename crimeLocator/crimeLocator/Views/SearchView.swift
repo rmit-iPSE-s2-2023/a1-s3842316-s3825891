@@ -15,10 +15,10 @@ struct SearchView: View {
     var filteredReports: [Report] {
         var res: [Report] = self.reports
         if !searchText.isEmpty {
-            res = self.reports.filter({$0.suburb.contains(searchText)})
+            res = self.reports.filter({$0.suburb.name.contains(searchText)})
         }
         return res.sorted {
-            $0.suburb < $1.suburb
+            $0.suburb.name < $1.suburb.name
         }
     }
     
@@ -26,9 +26,9 @@ struct SearchView: View {
         var suburbs = [String]()
         var res = [Report]()
         for report in self.filteredReports {
-            if !suburbs.contains(report.suburb) {
+            if !suburbs.contains(report.suburb.name) {
                 res.append(report)
-                suburbs.append(report.suburb)
+                suburbs.append(report.suburb.name)
             }
         }
         return res
@@ -62,15 +62,15 @@ struct SearchView_Previews: PreviewProvider {
 
 // List Items View
 struct SuburbListView: View {
-    var suburb: String
+    var suburb: Suburb
     var reports: [Report]
     var user: User
     
     var body: some View {
-        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports, user: self.user)) { // Destination page
+        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports, user: self.user, isFavorite: user.favorites.contains(suburb))) { // Destination page
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    Text(self.suburb)
+                    Text(self.suburb.name)
                 }
             }
         }

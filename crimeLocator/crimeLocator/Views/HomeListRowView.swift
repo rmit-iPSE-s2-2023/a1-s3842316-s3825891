@@ -28,8 +28,8 @@ struct HomeListRowView: View {
             
             DataView(title: "Type", text: report.type)
             DataView(title: "Date", text: dateFormatter.string(from: report.date))
-            DataView(title: "Postcode", text: String(report.postcode))
-            DataView(title: "Location", text: report.location)
+            DataView(title: "Postcode", text: String(report.suburb.postcode))
+            DataView(title: "Location", text: report.suburb.city)
 
             
             Spacer()
@@ -74,6 +74,6 @@ struct DataView: View {
 
 struct HomeListRowView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListRowView(report: Report(id: 1, type: "Theft", date: Date(), suburb: "A", location: "Brisbane", postcode: 4029))
+        HomeListRowView(report: Report(id: 1, type: "Theft", date: Date(), suburb: Suburb(id: 1, name: "A", postcode: 2042, city: "Brisbane")))
     }
 }

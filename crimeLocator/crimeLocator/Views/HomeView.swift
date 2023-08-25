@@ -10,37 +10,32 @@ import MapKit
 
 struct HomeView: View {
     
-    // Map center - QLD
+    var user: User
+    var reports: [Report]
+    
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
         span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
     )
-    
-    // Data Loader
-    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
-    @ObservedObject var userData = DataLoader<User>(resource: "UserData")
-    
-    @State var listActive = false
-    
+
     
     var body: some View {
         NavigationStack {
-        
             VStack(alignment: .leading, spacing: 20.0) {
-                Text("Welcome \(userData.data[1].fullName)!")
+                Text("Welcome \(self.user.fullName)!")
                     .font(.title)
                     .padding(.top, 10.0)
-                SearchBar(data: reportData.data, user: self.userData.data[1])
+                
+                SearchBar(data: self.reports, user: self.user)
+                
                 Map(coordinateRegion: $region)
                     .frame(height: 380)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: -5)
-                
-                
-                ListView(data: reportData.data)
+
+                ListView(data: reports)
                     .padding(.top, -10.0)
             }
-            
         }
         .padding(.horizontal, 25.0)
     }
@@ -57,11 +52,10 @@ struct ListViewItem: View {
                     .foregroundColor(.orange)
                     .font(.largeTitle)
                 
-                // Title/Desc
                 VStack(alignment: .leading) {
                     Text(report.type)
                         .font(.title3)
-                    Text("\(report.suburb) - \(report.location)")
+                    Text("\(report.suburb.name) - \(report.suburb.city)")
                         .foregroundColor(.gray)
                         .font(.caption)
                 }
@@ -72,7 +66,9 @@ struct ListViewItem: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        @ObservedObject var userData = DataLoader<User>(resource: "UserData")
+        @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
+        HomeView(user: userData.data[1], reports: reportData.data)
     }
 }
 
