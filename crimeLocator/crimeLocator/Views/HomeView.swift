@@ -15,7 +15,7 @@ struct HomeView: View {
     
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
-        span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
+        span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta + 0.1, longitudeDelta: MapConstants.defaultLongitudeDelta + 0.1)
     )
 
     

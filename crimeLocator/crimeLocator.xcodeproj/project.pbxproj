@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A19D0502A8FB1770090B1DC /* HomeListRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19D04F2A8FB1770090B1DC /* HomeListRowView.swift */; };
 		1A19D0522A8FC2160090B1DC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19D0512A8FC2160090B1DC /* Utils.swift */; };
+		1A42BB202A99083900B14CD7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42BB1F2A99083900B14CD7 /* Location.swift */; };
 		D52385842A98AE5F00DA0D08 /* Suburb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52385832A98AE5F00DA0D08 /* Suburb.swift */; };
 		D5A1EEBC2A80B30500A3FE99 /* crimeLocatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1EEBB2A80B30500A3FE99 /* crimeLocatorApp.swift */; };
 		D5A1EEBE2A80B30500A3FE99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1EEBD2A80B30500A3FE99 /* ContentView.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		1A19D04F2A8FB1770090B1DC /* HomeListRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeListRowView.swift; sourceTree = "<group>"; };
 		1A19D0512A8FC2160090B1DC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		1A42BB1F2A99083900B14CD7 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		D52385832A98AE5F00DA0D08 /* Suburb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suburb.swift; sourceTree = "<group>"; };
 		D5A1EEB82A80B30500A3FE99 /* crimeLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crimeLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5A1EEBB2A80B30500A3FE99 /* crimeLocatorApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = crimeLocatorApp.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				D5B688172A8E120A0070CA0C /* DataLoader.swift */,
 				D5B6881A2A8E1D3F0070CA0C /* Report.swift */,
 				D52385832A98AE5F00DA0D08 /* Suburb.swift */,
+				1A42BB1F2A99083900B14CD7 /* Location.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 			files = (
 				1A19D0502A8FB1770090B1DC /* HomeListRowView.swift in Sources */,
 				D5B688052A8E085A0070CA0C /* FavoriteView.swift in Sources */,
+				1A42BB202A99083900B14CD7 /* Location.swift in Sources */,
 				D52385842A98AE5F00DA0D08 /* Suburb.swift in Sources */,
 				D5B6881F2A8F80AA0070CA0C /* CommonViews.swift in Sources */,
 				D5B688032A8DFB7D0070CA0C /* HomeView.swift in Sources */,

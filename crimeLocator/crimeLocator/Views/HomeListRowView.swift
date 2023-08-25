@@ -96,16 +96,6 @@ struct DataView: View {
     }
 }
 
-struct Locations: Identifiable {
-    let name:String
-    let postcode:Int
-    let coordinates: CLLocationCoordinate2D
-    
-    var id:String{
-        name+String(postcode)
-    }
-}
-
 struct HomeListRowView_Previews: PreviewProvider {
     static var previews: some View {
         HomeListRowView(report: Report(id: 1, type: "Theft", date: Date(), suburb: Suburb(id: 1, name: "A", postcode: 2042, city: "Brisbane")))
