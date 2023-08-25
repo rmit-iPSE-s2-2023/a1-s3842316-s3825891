@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct User: Codable, Identifiable {
+class User: Codable, Identifiable {
     
     enum CodingKeys: CodingKey {
         case id
@@ -19,5 +19,11 @@ struct User: Codable, Identifiable {
     var id: Int
     var email: String
     var fullName: String
-    var favorites: [Int]
+    var favorites: [String]
+    
+    func removeFavorite(suburb: String) {
+        self.favorites = self.favorites.filter( {
+           return $0 != suburb
+       })
+    }
 }

@@ -30,7 +30,7 @@ struct HomeView: View {
                 Text("Welcome \(userData.data[1].fullName)!")
                     .font(.title)
                     .padding(.top, 10.0)
-                SearchBar(data: reportData.data)
+                SearchBar(data: reportData.data, user: self.userData.data[1])
                 Map(coordinateRegion: $region)
                     .frame(height: 380)
                     .clipShape(RoundedRectangle(cornerRadius: 30))

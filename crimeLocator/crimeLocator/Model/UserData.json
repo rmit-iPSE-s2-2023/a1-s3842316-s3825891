@@ -9,7 +9,7 @@
         "id": 2,
         "email": "johndoe2@gmail.com",
         "fullName": "John Doe 2",
-        "favorites": [1, 5, 10]
+        "favorites": ["Central Buiness District (CBD)"]
     }
 ]
  

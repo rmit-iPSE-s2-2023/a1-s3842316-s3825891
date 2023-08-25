@@ -9,6 +9,7 @@ import SwiftUI
 
 struct FavoriteView: View {
     @ObservedObject var userData = DataLoader<User>(resource: "UserData")
+    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
     
     var body: some View {
         NavigationStack {
@@ -16,7 +17,7 @@ struct FavoriteView: View {
                 TitleView(title: "Favorites")
                 Spacer()
                 if self.userData.data[0].favorites.count == 0 {
-                    NoFavoritesView()
+                    NoFavoritesView(reports: reportData.data, user: userData.data[1])
                 }
                 Spacer()
             }
@@ -32,7 +33,8 @@ struct FavoriteView_Previews: PreviewProvider {
 }
 
 struct NoFavoritesView: View {
-    @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
+    var reports: [Report]
+    var user: User
     
     var body: some View {
         
@@ -47,7 +49,7 @@ struct NoFavoritesView: View {
                 .font(.body)
                 .fontWeight(.thin)
                 .multilineTextAlignment(.center)
-            NavigationLink(destination: SearchView(reports: self.reportData.data)) {
+            NavigationLink(destination: SearchView(user: self.user, reports: self.reports)) {
                 Label("Find a Suburb", systemImage: "magnifyingglass")
                     .fontWeight(.medium)
                     .foregroundColor(.white)

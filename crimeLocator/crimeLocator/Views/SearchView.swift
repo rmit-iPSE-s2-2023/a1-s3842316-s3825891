@@ -10,6 +10,7 @@ import SwiftUI
 struct SearchView: View {
     @State var searchText = ""
     
+    var user: User
     var reports: [Report]
     var filteredReports: [Report] {
         var res: [Report] = self.reports
@@ -38,7 +39,7 @@ struct SearchView: View {
             if self.filteredReports.count > 0 {
                 List {
                     ForEach(self.uniqueSuburbReports) { report in
-                        SuburbListView(suburb: report.suburb, reports: self.filteredReports)
+                        SuburbListView(suburb: report.suburb, reports: self.filteredReports, user: self.user)
                     }
                 }
             } else {
@@ -54,7 +55,8 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         @ObservedObject var reportData = DataLoader<Report>(resource: "ReportData")
-        SearchView(reports: reportData.data)
+        @ObservedObject var userData = DataLoader<User>(resource: "UserData")
+        SearchView(user: userData.data[1], reports: reportData.data)
     }
 }
 
@@ -62,9 +64,10 @@ struct SearchView_Previews: PreviewProvider {
 struct SuburbListView: View {
     var suburb: String
     var reports: [Report]
+    var user: User
     
     var body: some View {
-        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports)) { // Destination page
+        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports, user: self.user)) { // Destination page
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     Text(self.suburb)
