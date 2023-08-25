@@ -11,19 +11,25 @@ import MapKit
 struct HomeListRowView: View {
     var report: Report
     
-    // Map center - QLD
+    // Default Qld Center
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
-            span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
-        )
+        span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
+    )
+    
+    @State private var locations: [Locations] = []
 
     var body: some View {
         VStack {
-            // Map
-            Map(coordinateRegion: $region)
+                        
+            Map(coordinateRegion: $region,
+                annotationItems: locations,
+                annotationContent: { location in
+                MapMarker(coordinate: location.coordinates, tint: .red)
+            })
                 .frame(width: 379, height: 264)
                 .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5) // Drop
+                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
                 .padding(.bottom, 30)
             
             DataView(title: "Type", text: report.type)
@@ -36,8 +42,9 @@ struct HomeListRowView: View {
         }
         .padding(.top, 20)
         .navigationBarTitle(report.type)
-        
-
+        .onAppear {
+            geocodePostcode(String(report.suburb.postcode))
+        }
     }
     
     // Date formatter
@@ -46,9 +53,28 @@ struct HomeListRowView: View {
         formatter.dateFormat = "MMM d, yyyy 'at' h:mma"
         return formatter
     }()
-
+    
+    // Postcode to coordinate converter
+    private func geocodePostcode(_ postcode: String) {
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(postcode) { placemarks, error in
+            if let error = error {
+                print("Geocoding error: \(error.localizedDescription)")
+                return
+            }
+            
+            // Coordinate
+            if let location = placemarks?.first?.location {
+                // Sets new center point in map
+                region = MKCoordinateRegion(center: location.coordinate, span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta))
+                
+                // Adds location to loc array
+                locations = [Locations(name: report.type, postcode: report.suburb.postcode, coordinates: location.coordinate)]
+            }
+        }
+    }
+    
 }
-
 
 // Data Items View
 struct DataView: View {
@@ -70,7 +96,15 @@ struct DataView: View {
     }
 }
 
-
+struct Locations: Identifiable {
+    let name:String
+    let postcode:Int
+    let coordinates: CLLocationCoordinate2D
+    
+    var id:String{
+        name+String(postcode)
+    }
+}
 
 struct HomeListRowView_Previews: PreviewProvider {
     static var previews: some View {
