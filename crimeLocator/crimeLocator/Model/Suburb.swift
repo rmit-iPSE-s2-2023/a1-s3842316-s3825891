@@ -26,33 +26,3 @@ struct Suburb: Codable, Identifiable, Hashable {
         self.pinned.toggle()
     }
 }
-
-class SuburbList: ObservableObject {
-    @Published var pinnedSuburbs: [Suburb]
-    @Published var unPinnedSuburbs: [Suburb]
-    
-    init(pinnedSuburbs: [Suburb], unPinnedSuburbs: [Suburb]) {
-        self.pinnedSuburbs = pinnedSuburbs
-        self.unPinnedSuburbs = unPinnedSuburbs
-    }
-    
-    func unPin(suburb: inout Suburb) {
-        suburb.togglePinned()
-        self.removePinnedSuburb(suburb: suburb)
-        self.unPinnedSuburbs = self.unPinnedSuburbs + [suburb]
-    }
-    
-    func pin(suburb: inout Suburb) {
-        suburb.togglePinned()
-        self.removeUnPinnedSuburb(suburb: suburb)
-        self.pinnedSuburbs = self.pinnedSuburbs + [suburb]
-    }
-    
-    func removePinnedSuburb(suburb: Suburb) {
-        self.pinnedSuburbs = self.pinnedSuburbs.filter({$0.id != suburb.id})
-    }
-    
-    func removeUnPinnedSuburb(suburb: Suburb) {
-        self.unPinnedSuburbs = self.pinnedSuburbs.filter({$0.id != suburb.id})
-    }
-}

@@ -9,38 +9,25 @@ import SwiftUI
 
 struct FavoriteView: View {
     @ObservedObject var user: User
-    @ObservedObject var favoriteSuburbs: SuburbList
     var reports: [Report]
     var suburbs: [Suburb]
-    
-    init(suburbs: [Suburb], reports: [Report], user: User) {
-        self.suburbs = suburbs
-        self.reports = reports
-        self.user = user
-        self.favoriteSuburbs = SuburbList(pinnedSuburbs: self.suburbs.filter({$0.pinned}), unPinnedSuburbs: self.suburbs.filter({!$0.pinned}))
-    }
     
     var body: some View {
         NavigationStack {
             VStack() {
                 TitleView(title: "Favorites")
-                Text("\(user.favorites.count) - \(favoriteSuburbs.pinnedSuburbs.count) - \(favoriteSuburbs.unPinnedSuburbs.count)")
                 Spacer()
                 if self.user.favorites.count == 0 {
                     NoFavoritesView(reports: reports, user: user)
                 } else {
-//                    SearchBar(data: reports, user: user)
+                    SearchBar(data: reports, user: user)
                     List {
                         Section(header: Text("Pinned Suburbs")) {
                             SuburbSubList(reports: self.reports, user: self.user, isPinned: true)
-                                .environmentObject(favoriteSuburbs)
-                            
                         }
                         
                         Section(header: Text("All Suburbs")) {
                             SuburbSubList(reports: self.reports, user: self.user, isPinned: false)
-                                .environmentObject(favoriteSuburbs)
-                            
                         }
                         
                     }
@@ -51,9 +38,6 @@ struct FavoriteView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
-        .onAppear {
-//            self.favoriteSuburbs = SuburbList(pinnedSuburbs: self.suburbs.filter({$0.pinned}), unPinnedSuburbs: self.suburbs.filter({!$0.pinned}))
-        }
     }
 }
 
@@ -63,7 +47,7 @@ struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
         let reportData = DataLoader<Report>(resource: "ReportData")
         let user = User.getUser(email: "johndoe2@gmail.com")
-        FavoriteView(suburbs: user.favorites, reports: reportData.data, user: User.getUser(email: "johndoe2@gmail.com"))
+        FavoriteView(user: user, reports: reportData.data, suburbs: user.favorites)
     }
 }
 
@@ -124,25 +108,18 @@ struct SuburbListItem: View {
 struct SuburbSubList: View {
     var reports: [Report]
     @ObservedObject var user: User
-    @EnvironmentObject var favoriteList: SuburbList
     @State var isPinned: Bool
     
-    init(reports: [Report], user: User, isPinned: Bool) {
-        self.isPinned = isPinned
-        self.reports = reports
-        self.user = user
-    }
-    
     var body: some View {
-//        var list: [Suburb] {
-//            if isPinned {
-//                return user.favorites.filter({$0.pinned})
-//            } else {
-//                retunr user.favorites.filter({!$0.pinned})
-//            }
-//        }
-        Text("\(user.favorites.count) - \(favoriteList.pinnedSuburbs.count) - \(favoriteList.unPinnedSuburbs.count)")
-        ForEach(Array(isPinned ? favoriteList.pinnedSuburbs.enumerated() : favoriteList.unPinnedSuburbs.enumerated()), id: \.element) { index, suburb in
+        var subs: [Suburb] {
+            if isPinned {
+                return user.favorites.filter({$0.pinned})
+            } else {
+                return user.favorites.filter({!$0.pinned})
+            }
+        }
+        
+        ForEach(Array(subs.enumerated()), id: \.element) { index, suburb in
             NavigationLink {
                 SuburbView(suburb: suburb, reports: reports, user: self.user, isFavorite: true)
                 
@@ -151,14 +128,10 @@ struct SuburbSubList: View {
                     .swipeActions {
                         Button("Delete") {
                             user.removeFavorite(suburb: suburb)
-                            self.isPinned ? favoriteList.removePinnedSuburb(suburb: suburb) : favoriteList.removeUnPinnedSuburb(suburb: suburb)
-                            user.favorites = favoriteList.pinnedSuburbs + favoriteList.unPinnedSuburbs
                         }
                         .tint(.red)
                         Button(isPinned ? "Unpin" : "Pin") {
-                            var s = isPinned ? favoriteList.pinnedSuburbs[index] : favoriteList.unPinnedSuburbs[index]
-                            s.pinned ? favoriteList.unPin(suburb: &s) : favoriteList.pin(suburb: &s)
-                            user.favorites = favoriteList.pinnedSuburbs + favoriteList.unPinnedSuburbs
+                            user.toggle(suburb: suburb.name)
                         }
                     }
             }

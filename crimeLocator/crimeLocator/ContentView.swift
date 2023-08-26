@@ -17,12 +17,13 @@ struct ContentView: View {
         
         let tabs = [
             TabItem(image: "doc.text.image", title: "Today", view: AnyView(HomeView(user: user, reports: reportData.data))),
-            TabItem(image: "bookmark.circle", title: "Favorites", view: AnyView(FavoriteView(suburbs: user.favorites, reports: reportData.data, user: user))),
+            TabItem(image: "bookmark.circle", title: "Favorites", view: AnyView(FavoriteView(user: user, reports: reportData.data, suburbs: user.favorites))),
             TabItem(image: "clock.arrow.circlepath", title: "Recent", view: AnyView(RecentView())),
             TabItem(image: "gearshape", title: "Settings", view: AnyView(SettingView())),
         ]
         
         TabView(selection: .constant(1)) {
+        
             Group {
                 ForEach(tabs) { tab in
                     tab.view

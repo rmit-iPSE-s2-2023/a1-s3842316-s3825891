@@ -53,6 +53,15 @@ class User: Codable, Identifiable, ObservableObject {
         self.favorites.append(suburb)
     }
     
+    func toggle(suburb: String) {
+        var sub = self.favorites.first(where: {$0.name == suburb})
+        self.favorites = self.favorites.filter({$0.name != sub?.name})
+        sub?.togglePinned()
+        if (sub != nil) {
+            self.favorites.append(sub!)
+        }
+    }
+    
     static func getUser(email: String) -> User {
         if allUsers.count == 0 {
             User.allUsers = DataLoader<User>(resource: "UserData").data

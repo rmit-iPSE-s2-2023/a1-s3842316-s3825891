@@ -18,42 +18,90 @@ struct SuburbView: View {
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
         span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
     )
+    
+    var columns: [GridItem] = [
+        GridItem(.flexible(), spacing: 10),
+        GridItem(.flexible(), spacing: 10)
+    ]
 
     
     var body: some View {
-        VStack(alignment: .leading) {
-            
-            HStack {
-                Text("\(suburb.name)")
-                    .font(.title)
-                Spacer()
-                Button {
-                    print("user \(user.favorites.count)")
-                    print("isFavorite \(self.isFavorite)")
-                    for suburb in user.favorites {
-                        print("suburb \(suburb.name)")
-                    }
-                    if self.isFavorite {
-                        user.removeFavorite(suburb: suburb)
-                    } else {
-                        user.addFavorite(suburb: suburb)
-                    }
-                    self.isFavorite.toggle()
-                } label: {
-                    Image(systemName: self.isFavorite ? "bookmark.fill" : "bookmark")
+        ScrollView {
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("\(suburb.name)")
                         .font(.title)
+                    Spacer()
+                    Button {
+                        if self.isFavorite {
+                            user.removeFavorite(suburb: suburb)
+                        } else {
+                            user.addFavorite(suburb: suburb)
+                        }
+                        self.isFavorite.toggle()
+                    } label: {
+                        Image(systemName: self.isFavorite ? "bookmark.fill" : "bookmark")
+                            .font(.title)
+                    }
                 }
+                
+                // Map
+                Map(coordinateRegion: $region)
+                    .frame(width: 379, height: 200)
+                    .clipShape(RoundedRectangle(cornerRadius: 30))
+                    .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
+                
+                // Report Count
+                Text("Reports count: \(reports.count)")
+                
+                // Custom Layout
+                ForEach(0..<reports.count, id: \.self) { index in
+                    if index % 3 == 0 {
+                        CustomRectangle(report: reports[index], isLarge: true)
+                    } else {
+                        HStack {
+                            if index < reports.count {
+                                CustomRectangle(report: reports[index], isLarge: false)
+                            }
+                            if index + 1 < reports.count {
+                                CustomRectangle(report: reports[index + 1], isLarge: false)
+                            }
+                        }
+                    }
+                }
+                Spacer()
             }
-            
-            
-            Map(coordinateRegion: $region)
-                .frame(width: 379, height: 200)
-                .clipShape(RoundedRectangle(cornerRadius: 30))
-                .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
-            
-            Spacer()
+            .padding(.horizontal, 25.0)
         }
-        .padding(.horizontal, 25.0)
+    }
+}
+
+// Custom Rectangle
+struct CustomRectangle: View {
+    var report: Report
+    var isLarge: Bool
+
+    var body: some View {
+        NavigationLink(destination: HomeListRowView(report: report)) {
+            ZStack {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color.orange.opacity(0.1))
+                    .frame(maxWidth: isLarge ? .infinity : nil, maxHeight: isLarge ? 120 : 60)
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color.orange, lineWidth: 1)
+                
+                HStack {
+                    Image(systemName: "mappin.circle.fill")
+                        .foregroundColor(Color.orange)
+                    Text(report.type)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    Image(systemName: "chevron.right")
+                }
+                .padding([.horizontal, .vertical], 10)
+            }
+        }
+        .buttonStyle(PlainButtonStyle())
+        .background(Color.clear)
     }
 }
 

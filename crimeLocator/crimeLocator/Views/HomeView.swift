@@ -31,6 +31,7 @@ struct HomeView: View {
                 // Text("\(user.favorites[0].name)")
                 
                 Map(coordinateRegion: $region,
+                    showsUserLocation: true,
                     annotationItems: locations,
                     annotationContent: { location in
                     MapMarker(coordinate: location.coordinates, tint: .red)
