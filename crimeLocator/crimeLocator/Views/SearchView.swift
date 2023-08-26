@@ -55,7 +55,6 @@ struct SearchView: View {
 struct SearchView_Previews: PreviewProvider {
     static var previews: some View {
         let reportData = DataLoader<Report>(resource: "ReportData")
-//        var userData = DataLoader<User>(resource: "UserData")
         SearchView(user: User.getUser(email: "johndoe@gmail.com"), reports: reportData.data)
     }
 }
@@ -68,11 +67,15 @@ struct SuburbListView: View {
     
     
     var body: some View {
-        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports, user: self.user, isFavorite: user.favorites.filter({$0.id == suburb.id}).count > 0)) { // Destination page
+        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports.filter({$0.suburb.name == suburb.name}), user: self.user, isFavorite: user.favorites.filter({$0.id == suburb.id}).count > 0)) { // Destination page
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
-                    Text(self.suburb.name)
-//                    Text("\(user.favorites.filter({$0.id == suburb.id}).count > 0 ? "true" : "false")")
+                    HStack {
+                        Text(self.suburb.name)
+                            .font(.title3)
+                    }
+                    Text("\(self.reports.filter({$0.suburb.name == suburb.name}).count) new reports")
+                        .font(.caption)
                 }
             }
         }

@@ -121,7 +121,7 @@ struct SuburbSubList: View {
         
         ForEach(Array(subs.enumerated()), id: \.element) { index, suburb in
             NavigationLink {
-                SuburbView(suburb: suburb, reports: reports, user: self.user, isFavorite: true)
+                SuburbView(suburb: suburb, reports: reports.filter({$0.suburb.name == suburb.name}), user: self.user, isFavorite: true)
                 
             } label: {
                 SuburbListItem(suburb: suburb)

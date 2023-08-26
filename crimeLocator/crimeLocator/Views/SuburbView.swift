@@ -55,20 +55,25 @@ struct SuburbView: View {
                 Text("Reports count: \(reports.count)")
                 
                 // Custom Layout
-                ForEach(0..<reports.count, id: \.self) { index in
-                    if index % 3 == 0 {
-                        CustomRectangle(report: reports[index], isLarge: true)
-                    } else {
-                        HStack {
-                            if index < reports.count {
-                                CustomRectangle(report: reports[index], isLarge: false)
-                            }
-                            if index + 1 < reports.count {
-                                CustomRectangle(report: reports[index + 1], isLarge: false)
+                if reports.count == 0 {
+                    Text("No Reports in \(suburb.name)")
+                } else {
+                    ForEach(0..<reports.count, id: \.self) { index in
+                        if index % 3 == 0 {
+                            CustomRectangle(report: reports[index], isLarge: true)
+                        } else {
+                            HStack {
+                                if index < reports.count {
+                                    CustomRectangle(report: reports[index], isLarge: false)
+                                }
+                                if index + 1 < reports.count {
+                                    CustomRectangle(report: reports[index + 1], isLarge: false)
+                                }
                             }
                         }
                     }
                 }
+
                 Spacer()
             }
             .padding(.horizontal, 25.0)
@@ -110,10 +115,10 @@ struct SuburbView_Previews: PreviewProvider {
         let reportData = DataLoader<Report>(resource: "ReportData")
         let userData = DataLoader<User>(resource: "UserData")
         
-        @State var user = userData.data[1]
+        var user = userData.data[1]
         
-        SuburbView(suburb: user.favorites[0], reports: reportData.data.filter({
-            $0.suburb.name == user.favorites[0].name
-        }), user: user, isFavorite: user.favorites.contains(user.favorites[0]))
+        SuburbView(suburb: reportData.data[0].suburb, reports: reportData.data.filter({
+            $0.suburb.name == reportData.data[0].suburb.name
+        }), user: user, isFavorite: false)
     }
 }
