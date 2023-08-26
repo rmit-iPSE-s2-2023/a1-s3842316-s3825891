@@ -48,7 +48,7 @@
         "type": "Drug Offences",
         "date": "2023-08-17 09:50:00",
         "suburb": {
-            "id": 6,
+            "id": 5,
             "name": "Central Business District (CBD)",
             "postcode": 4121,
             "city": "Brisbane"
@@ -61,6 +61,61 @@
         "suburb": {
             "id": 6,
             "name": "Central Business District (CBD)",
+            "postcode": 4068,
+            "city": "Brisbane"
+        }
+    },
+    {
+        "id": 7,
+        "type": "Unlawful Entry",
+        "date": "2023-08-17 11:20:00",
+        "suburb": {
+            "id": 7,
+            "name": "E",
+            "postcode": 4005,
+            "city": "Brisbane"
+        }
+    },
+    {
+        "id": 8,
+        "type": "Other Theft (excl. Unlawful Entry)",
+        "date": "2023-08-17 00:00:00",
+        "suburb": {
+            "id": 8,
+            "name": "F",
+            "postcode": 4169,
+            "city": "Brisbane"
+        }
+    },
+    {
+        "id": 9,
+        "type": "Drug Offences",
+        "date": "2023-08-17 09:50:00",
+        "suburb": {
+            "id": 9,
+            "name": "G",
+            "postcode": 4121,
+            "city": "Brisbane"
+        }
+    },
+    {
+        "id": 10,
+        "type": "Theft",
+        "date": "2023-08-17 00:00:00",
+        "suburb": {
+            "id": 10,
+            "name": "H",
+            "postcode": 4068,
+            "city": "Brisbane"
+        }
+    },
+    {
+        "id": 11,
+        "type": "Theft",
+        "date": "2023-08-17 00:00:00",
+        "suburb": {
+            "id": 11,
+            "name": "J",
             "postcode": 4068,
             "city": "Brisbane"
         }
