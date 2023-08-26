@@ -36,7 +36,7 @@ struct TitleView: View {
 
 struct SearchBar: View {
     var data: [Report]
-    var user: User
+    @ObservedObject var user: User
     
     var body: some View {
         NavigationLink(destination: SearchView(user: user, reports: self.data)) {

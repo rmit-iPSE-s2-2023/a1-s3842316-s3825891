@@ -18,8 +18,8 @@ class User: Codable, Identifiable, ObservableObject {
     var id = UUID()
     var email: String
     var fullName: String
-    
     @Published var favorites: [Suburb]
+    
     static private var allUsers = [User]()
     
     required init(from decoder: Decoder) throws {
@@ -43,8 +43,9 @@ class User: Codable, Identifiable, ObservableObject {
     }
     
     func removeFavorite(suburb: Suburb) {
+        print("removing \(suburb)")
         self.favorites = self.favorites.filter( {
-            return $0 != suburb
+            return $0.id != suburb.id
        })
     }
     

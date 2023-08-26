@@ -59,8 +59,8 @@ struct SuburbView: View {
 
 struct SuburbView_Previews: PreviewProvider {
     static var previews: some View {
-        var reportData = DataLoader<Report>(resource: "ReportData")
-        var userData = DataLoader<User>(resource: "UserData")
+        let reportData = DataLoader<Report>(resource: "ReportData")
+        let userData = DataLoader<User>(resource: "UserData")
         
         @State var user = userData.data[1]
         

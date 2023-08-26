@@ -4,10 +4,11 @@
         "type": "Theft",
         "date": "2023-08-17 00:00:00",
         "suburb": {
-            "id": 1,
+            "id": 7,
             "name": "A",
-            "postcode": 4000,
-            "city": "Brisbane"
+            "city": "Brisbane",
+            "postcode": 4026,
+            "pinned": false
         }
     },
     {
@@ -15,10 +16,11 @@
         "type": "Violence",
         "date": "2023-08-17 00:04:00",
         "suburb": {
-            "id": 2,
+            "id": 8,
             "name": "B",
-            "postcode": 4006,
-            "city": "Brisbane"
+            "city": "Brisbane",
+            "postcode": 4021,
+            "pinned": false
         }
     },
     {
@@ -29,7 +31,8 @@
             "id": 3,
             "name": "D",
             "postcode": 4005,
-            "city": "Brisbane"
+            "city": "Brisbane",
+            "pinned": false
         }
     },
     {
@@ -40,7 +43,8 @@
             "id": 4,
             "name": "C",
             "postcode": 4169,
-            "city": "Brisbane"
+            "city": "Brisbane",
+            "pinned": false
         }
     },
     {
@@ -49,9 +53,10 @@
         "date": "2023-08-17 09:50:00",
         "suburb": {
             "id": 6,
-            "name": "Central Business District (CBD)",
-            "postcode": 4121,
-            "city": "Brisbane"
+            "name": "Central Buiness District (CBD)",
+            "city": "Brisbane",
+            "postcode": 4024,
+            "pinned": false
         }
     },
     {
@@ -60,9 +65,10 @@
         "date": "2023-08-17 00:00:00",
         "suburb": {
             "id": 6,
-            "name": "Central Business District (CBD)",
-            "postcode": 4068,
-            "city": "Brisbane"
+            "name": "Central Buiness District (CBD)",
+            "city": "Brisbane",
+            "postcode": 4024,
+            "pinned": false
         }
     },
 ]

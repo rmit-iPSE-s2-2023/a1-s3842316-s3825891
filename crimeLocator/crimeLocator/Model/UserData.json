@@ -7,7 +7,8 @@
                 "id": 6,
                 "name": "Central Business District (CBD)",
                 "postcode": 4024,
-                "city": "Brisbane"
+                "city": "Brisbane",
+                "pinned": false
             }
         ]
     },
@@ -19,7 +20,22 @@
                 "id": 6,
                 "name": "Central Buiness District (CBD)",
                 "city": "Brisbane",
-                "postcode": 4024
+                "postcode": 4024,
+                "pinned": true
+            },
+            {
+                "id": 7,
+                "name": "A",
+                "city": "Brisbane",
+                "postcode": 4026,
+                "pinned": false
+            },
+            {
+                "id": 8,
+                "name": "B",
+                "city": "Brisbane",
+                "postcode": 4021,
+                "pinned": false
             }
         ]
     }
