@@ -120,7 +120,6 @@
 				D5B688082A8E08A20070CA0C /* SettingView.swift */,
 				D5B6881E2A8F80AA0070CA0C /* CommonViews.swift */,
 				1A19D04F2A8FB1770090B1DC /* HomeListRowView.swift */,
-				1A19D0512A8FC2160090B1DC /* Utils.swift */,
 				D5B688202A9308820070CA0C /* SearchView.swift */,
 				D5B688222A93105F0070CA0C /* SuburbView.swift */,
 			);
@@ -135,6 +134,7 @@
 				D5B6881A2A8E1D3F0070CA0C /* Report.swift */,
 				D52385832A98AE5F00DA0D08 /* Suburb.swift */,
 				1A42BB1F2A99083900B14CD7 /* Location.swift */,
+				1A19D0512A8FC2160090B1DC /* Utils.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
