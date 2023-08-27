@@ -15,7 +15,7 @@ struct FavoriteView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 20) {
-                TitleView(title: "Favorites")
+                TitleView(title: "Watch Zone")
                     .padding(.horizontal, -25)
                     .padding(.bottom, -25)
                 Spacer()
