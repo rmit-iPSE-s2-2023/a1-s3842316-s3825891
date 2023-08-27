@@ -9,16 +9,22 @@ import SwiftUI
 import MapKit
 
 struct SuburbView: View {
+    
     var suburb: Suburb
     var reports: [Report]
     @ObservedObject var user: User
+    
+    // Track favorite status
     @State var isFavorite: Bool
     
+    // State variables for the map region and locations to be displayed
+    // QLD - Brisbane Center
     @State private var region = MKCoordinateRegion(
         center: CLLocationCoordinate2D(latitude: MapConstants.defaultLatitude, longitude: MapConstants.defaultLongitude),
         span: MKCoordinateSpan(latitudeDelta: MapConstants.defaultLatitudeDelta, longitudeDelta: MapConstants.defaultLongitudeDelta)
     )
     
+    // Custom layout grid columns
     var columns: [GridItem] = [
         GridItem(.flexible(), spacing: 10),
         GridItem(.flexible(), spacing: 10)
@@ -26,13 +32,20 @@ struct SuburbView: View {
 
     
     var body: some View {
+        
         ScrollView {
+            
             VStack(alignment: .leading) {
                 HStack {
+                    
+                    // Text (Suburb Name)
                     Text("\(suburb.name)")
                         .font(.title)
+                    
                     Spacer()
+                    
                     Button {
+                        // Handle favorite toggle
                         if self.isFavorite {
                             user.removeFavorite(suburb: suburb)
                         } else {
@@ -45,16 +58,16 @@ struct SuburbView: View {
                     }
                 }
                 
-                // Map
+                // Map display
                 Map(coordinateRegion: $region)
                     .frame(width: 379, height: 200)
                     .clipShape(RoundedRectangle(cornerRadius: 30))
                     .shadow(color: .black.opacity(0.2), radius: 10, x: 0, y: 5)
                 
-                // Report Count
+                // Report count display
                 Text("Reports count: \(reports.count)")
                 
-                // Custom Layout
+                // Custom layout for reports
                 if reports.count == 0 {
                     Text("No Reports in \(suburb.name)")
                 } else {
@@ -81,20 +94,25 @@ struct SuburbView: View {
     }
 }
 
-// Custom Rectangle
+// Custom rectangle view for each report
 struct CustomRectangle: View {
     var report: Report
     var isLarge: Bool
 
     var body: some View {
+        
         NavigationLink(destination: HomeListRowView(report: report)) {
+            
             ZStack {
+                
+                // Rectangle
                 RoundedRectangle(cornerRadius: 10)
                     .fill(Color.orange.opacity(0.1))
                     .frame(maxWidth: isLarge ? .infinity : nil, maxHeight: isLarge ? 120 : 60)
                 RoundedRectangle(cornerRadius: 10)
                     .stroke(Color.orange, lineWidth: 1)
                 
+                // Rectangle content
                 HStack {
                     Image(systemName: "mappin.circle.fill")
                         .foregroundColor(Color.orange)

@@ -8,10 +8,14 @@
 import SwiftUI
 
 struct SearchView: View {
+    // Search text binding
     @State var searchText = ""
     
     @ObservedObject var user: User
+    
     var reports: [Report]
+    
+    // Computed property to filter and sort reports based on search text
     var filteredReports: [Report] {
         var res: [Report] = self.reports
         if !searchText.isEmpty {
@@ -22,6 +26,7 @@ struct SearchView: View {
         }
     }
     
+    // Computed property to get unique suburbs from the filtered reports
     var uniqueSuburbReports: [Report] {
         var suburbs = [String]()
         var res = [Report]()
@@ -35,7 +40,10 @@ struct SearchView: View {
     }
     
     var body: some View {
+        
         NavigationView {
+            
+            
             if self.filteredReports.count > 0 {
                 List {
                     ForEach(self.uniqueSuburbReports) { report in
@@ -52,25 +60,22 @@ struct SearchView: View {
     }
 }
 
-struct SearchView_Previews: PreviewProvider {
-    static var previews: some View {
-        let reportData = DataLoader<Report>(resource: "ReportData")
-        SearchView(user: User.getUser(email: "johndoe@gmail.com"), reports: reportData.data)
-    }
-}
-
-// List Items View
+// List Items View (Single row representing a suburb)
 struct SuburbListView: View {
+    
     @ObservedObject var user: User
     var suburb: Suburb
     var reports: [Report]
     
-    
     var body: some View {
-        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports.filter({$0.suburb.name == suburb.name}), user: self.user, isFavorite: user.favorites.filter({$0.id == suburb.id}).count > 0)) { // Destination page
+        
+        NavigationLink(destination: SuburbView(suburb: suburb, reports: reports.filter({$0.suburb.name == suburb.name}), user: self.user, isFavorite: user.favorites.filter({$0.id == suburb.id}).count > 0)) {
+            
             HStack(alignment: .center) {
                 VStack(alignment: .leading) {
                     HStack {
+                        
+                        // Text (Suburb Name)
                         Text(self.suburb.name)
                             .font(.title3)
                     }
@@ -82,3 +87,9 @@ struct SuburbListView: View {
     }
 }
 
+struct SearchView_Previews: PreviewProvider {
+    static var previews: some View {
+        let reportData = DataLoader<Report>(resource: "ReportData")
+        SearchView(user: User.getUser(email: "johndoe@gmail.com"), reports: reportData.data)
+    }
+}

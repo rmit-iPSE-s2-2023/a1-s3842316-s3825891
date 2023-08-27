@@ -10,11 +10,11 @@ import SwiftUI
 struct ContentView: View {
     
     var user = User.getUser(email: "johndoe2@gmail.com")
-    
     var reportData = DataLoader<Report>(resource: "ReportData")
     
     var body: some View {
         
+        // Define the Tab Items for TabView
         let tabs = [
             TabItem(image: "doc.text.image", title: "Today", view: AnyView(HomeView(user: user, reports: reportData.data))),
             TabItem(image: "binoculars.fill", title: "Watch Zone", view: AnyView(FavoriteView(user: user, reports: reportData.data, suburbs: user.favorites))),
@@ -22,9 +22,12 @@ struct ContentView: View {
             TabItem(image: "gearshape", title: "Settings", view: AnyView(SettingView())),
         ]
         
+        // Create the TabView interface
         TabView(selection: .constant(1)) {
         
             Group {
+                
+                // Loop through each tab item and create the corresponding tab
                 ForEach(tabs) { tab in
                     tab.view
                         .tabItem {
@@ -41,22 +44,24 @@ struct ContentView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-            
-    }
-}
-
+// Define a structure for each Tab Item
 struct TabItem: Identifiable {
     var id = UUID()
     var image: String
     var title: String
     var view: AnyView
     
+    // Initializer for the TabItem
     init(image: String, title: String, view: AnyView) {
         self.image = image
         self.title = title
         self.view = view
+    }
+}
+
+struct ContentView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
+            
     }
 }
