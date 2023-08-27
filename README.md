@@ -16,7 +16,6 @@
 -   App Structure
 -   Requirements
 -   Usage
--   Contributing
 
 ## About
 
