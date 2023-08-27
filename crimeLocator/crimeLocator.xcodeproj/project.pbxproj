@@ -64,6 +64,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D556A9912A9B32AF008ED1DC /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D5B688132A8E10D20070CA0C /* ReportData.json */,
+				D5B688112A8E10B30070CA0C /* UserData.json */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		D5A1EEAF2A80B30500A3FE99 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +92,7 @@
 		D5A1EEBA2A80B30500A3FE99 /* crimeLocator */ = {
 			isa = PBXGroup;
 			children = (
+				D556A9912A9B32AF008ED1DC /* Resources */,
 				D5B6880A2A8E0C860070CA0C /* Model */,
 				D5B688012A8DFB5B0070CA0C /* Views */,
 				D5A1EEBB2A80B30500A3FE99 /* crimeLocatorApp.swift */,
@@ -120,8 +130,6 @@
 		D5B6880A2A8E0C860070CA0C /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D5B688112A8E10B30070CA0C /* UserData.json */,
-				D5B688132A8E10D20070CA0C /* ReportData.json */,
 				D5B688152A8E11850070CA0C /* User.swift */,
 				D5B688172A8E120A0070CA0C /* DataLoader.swift */,
 				D5B6881A2A8E1D3F0070CA0C /* Report.swift */,
