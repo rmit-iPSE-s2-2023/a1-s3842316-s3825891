@@ -1,12 +1,13 @@
 # CrimeLocator
 
-## [GitHub Link(Main Branch)](https://github.com/rmit-iPSE-s2-2023/a1-s3842316-s3825891) 
+## Links 
+### [GitHub Link(Main Branch)](https://github.com/rmit-iPSE-s2-2023/a1-s3842316-s3825891) 
+### [Figma Link](https://www.figma.com/file/7w8Gdz1iP5hGfzYo3miqWl/crimeLocator?type=design&node-id=0-1&mode=design&t=7K1bSWXAQctYBxMe-0)
 
-
-
-	Group No: - CrimeLocator_a1
-	ID: s3825891 - Name: Jainam Doshi
-	ID: S3842316 - Name: Sahibjeet Singh
+## Group Details
+    Group No: - CrimeLocator_a1
+    ID: s3825891 - Name: Jainam Doshi
+    ID: S3842316 - Name: Sahibjeet Singh
 
 ## Table of Contents
 
@@ -16,6 +17,8 @@
 -   App Structure
 -   Requirements
 -   Usage
+-   Contributing
+-   Figma Embed
 
 ## About
 
@@ -80,5 +83,6 @@ Here's a basic overview of the directory structure:
 
 Open the project in Xcode, build and run
 
+## Figma Embed
 
-
+<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2F7w8Gdz1iP5hGfzYo3miqWl%2FcrimeLocator%3Ftype%3Ddesign%26mode%3Ddesign%26t%3DttVG8ol4uNj3YCWB-1" allowfullscreen></iframe>
