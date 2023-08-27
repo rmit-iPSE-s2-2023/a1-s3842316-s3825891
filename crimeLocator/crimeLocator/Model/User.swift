@@ -15,6 +15,7 @@ class User: Codable, Identifiable, ObservableObject {
         case favorites
     }
     
+    // Properties of the User class
     var id = UUID()
     var email: String
     var fullName: String
@@ -22,6 +23,7 @@ class User: Codable, Identifiable, ObservableObject {
     
     static private var allUsers = [User]()
     
+    // Required initializer for decoding from JSON format
     required init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.email = try container.decode(String.self, forKey: .email)
@@ -35,6 +37,7 @@ class User: Codable, Identifiable, ObservableObject {
         self.favorites = [Suburb]()
     }
     
+    // Method for encoding to JSON
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(email, forKey: .email)
@@ -42,6 +45,7 @@ class User: Codable, Identifiable, ObservableObject {
         try container.encode(favorites, forKey: .favorites)
     }
     
+    // To remove a favorite suburb
     func removeFavorite(suburb: Suburb) {
         print("removing \(suburb)")
         self.favorites = self.favorites.filter( {
@@ -49,10 +53,12 @@ class User: Codable, Identifiable, ObservableObject {
        })
     }
     
+    // Method to add a favorite suburb
     func addFavorite(suburb: Suburb) {
         self.favorites.append(suburb)
     }
     
+    // Method to toggle the pinned status of a suburb
     func toggle(suburb: String) {
         var sub = self.favorites.first(where: {$0.name == suburb})
         self.favorites = self.favorites.filter({$0.name != sub?.name})
@@ -62,6 +68,7 @@ class User: Codable, Identifiable, ObservableObject {
         }
     }
     
+    // Static method to get a User object based on email
     static func getUser(email: String) -> User {
         if allUsers.count == 0 {
             User.allUsers = DataLoader<User>(resource: "UserData").data
