@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1A19D0522A8FC2160090B1DC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A19D0512A8FC2160090B1DC /* Utils.swift */; };
 		1A42BB202A99083900B14CD7 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A42BB1F2A99083900B14CD7 /* Location.swift */; };
+		1AE02C5D2A9B681000F37536 /* LogoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE02C5C2A9B681000F37536 /* LogoView.swift */; };
 		D52385842A98AE5F00DA0D08 /* Suburb.swift in Sources */ = {isa = PBXBuildFile; fileRef = D52385832A98AE5F00DA0D08 /* Suburb.swift */; };
 		D556A9932A9B653A008ED1DC /* ReportView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556A9922A9B653A008ED1DC /* ReportView.swift */; };
 		D5A1EEBC2A80B30500A3FE99 /* crimeLocatorApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A1EEBB2A80B30500A3FE99 /* crimeLocatorApp.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		1A19D0512A8FC2160090B1DC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		1A42BB1F2A99083900B14CD7 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		1AE02C5C2A9B681000F37536 /* LogoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoView.swift; sourceTree = "<group>"; };
 		D52385832A98AE5F00DA0D08 /* Suburb.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Suburb.swift; sourceTree = "<group>"; };
 		D556A9922A9B653A008ED1DC /* ReportView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportView.swift; sourceTree = "<group>"; };
 		D5A1EEB82A80B30500A3FE99 /* crimeLocator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = crimeLocator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +124,7 @@
 				D5B6881E2A8F80AA0070CA0C /* CommonViews.swift */,
 				D5B688202A9308820070CA0C /* SearchView.swift */,
 				D5B688222A93105F0070CA0C /* SuburbView.swift */,
+				1AE02C5C2A9B681000F37536 /* LogoView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -211,6 +214,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1AE02C5D2A9B681000F37536 /* LogoView.swift in Sources */,
 				D5B688052A8E085A0070CA0C /* FavoriteView.swift in Sources */,
 				1A42BB202A99083900B14CD7 /* Location.swift in Sources */,
 				D52385842A98AE5F00DA0D08 /* Suburb.swift in Sources */,
