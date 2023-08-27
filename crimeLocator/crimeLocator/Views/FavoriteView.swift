@@ -24,17 +24,18 @@ struct FavoriteView: View {
                 } else {
                     SearchBar(data: reports, user: user)
                     List {
-                        Section(header: Text("Pinned Suburbs")) {
-                            SuburbSubList(reports: self.reports, user: self.user, isPinned: true)
+                        if user.favorites.first(where: {$0.pinned}) != nil {
+                            Section(header: Text("Pinned Suburbs")) {
+                                SuburbSubList(reports: self.reports, user: self.user, isPinned: true)
+                            }
                         }
                         
-                        Section(header: Text("All Suburbs")) {
-                            SuburbSubList(reports: self.reports, user: self.user, isPinned: false)
+                        if user.favorites.first(where: {!$0.pinned}) != nil {
+                            Section(header: Text("All Suburbs")) {
+                                SuburbSubList(reports: self.reports, user: self.user, isPinned: false)
+                            }
                         }
-                        
                     }
-                    
-                    
                 }
                 Spacer()
             }
