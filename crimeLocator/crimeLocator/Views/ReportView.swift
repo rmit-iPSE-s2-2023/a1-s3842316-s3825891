@@ -8,7 +8,7 @@
 import SwiftUI
 import MapKit
 
-struct HomeListRowView: View {
+struct ReportView: View {
     var report: Report
     
     // State variables for the map region and locations to be displayed
@@ -95,7 +95,7 @@ struct DataView: View {
         
         VStack(alignment: .leading) {
             
-            // Text 
+            // Text
             Text(title)
                 .font(.headline)
             Text(text)
@@ -109,8 +109,8 @@ struct DataView: View {
     }
 }
 
-struct HomeListRowView_Previews: PreviewProvider {
+struct ReportView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeListRowView(report: Report(id: 1, type: "Theft", date: Date(), suburb: Suburb(id: 1, name: "A", postcode: 2042, city: "Brisbane", pinned: false)))
+        ReportView(report: Report(id: 1, type: "Theft", date: Date(), suburb: Suburb(id: 1, name: "A", postcode: 2042, city: "Brisbane", pinned: false)))
     }
 }

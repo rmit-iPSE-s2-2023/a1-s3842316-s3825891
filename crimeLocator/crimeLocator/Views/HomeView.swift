@@ -93,7 +93,7 @@ struct ListViewItem: View {
     var body: some View {
         
         // Stack
-        NavigationLink(destination: HomeListRowView(report: report)) {
+        NavigationLink(destination: ReportView(report: report)) {
             HStack(alignment: .center) {
                 
                 // Map Pin Icon

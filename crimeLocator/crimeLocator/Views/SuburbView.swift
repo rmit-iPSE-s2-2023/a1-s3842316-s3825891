@@ -101,7 +101,7 @@ struct CustomRectangle: View {
 
     var body: some View {
         
-        NavigationLink(destination: HomeListRowView(report: report)) {
+        NavigationLink(destination: ReportView(report: report)) {
             
             ZStack {
                 
