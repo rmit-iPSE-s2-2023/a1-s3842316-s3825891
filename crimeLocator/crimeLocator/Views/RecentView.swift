@@ -9,7 +9,13 @@ import SwiftUI
 
 struct RecentView: View {
     var body: some View {
-        Text("Recent View")
+        VStack {
+            Spacer()
+            LogoView()
+            Spacer()
+            Text("Page is being implement")
+            Spacer()
+        }
     }
 }
 

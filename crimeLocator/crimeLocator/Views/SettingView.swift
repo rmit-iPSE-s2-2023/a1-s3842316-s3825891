@@ -10,7 +10,10 @@ import SwiftUI
 struct SettingView: View {
     var body: some View {
         VStack {
-            TitleView(title: "Settings")
+            Spacer()
+            LogoView()
+            Spacer()
+            Text("Page is being implement")
             Spacer()
         }
     }
