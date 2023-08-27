@@ -34,7 +34,7 @@ struct HomeView: View {
                     showsUserLocation: true,
                     annotationItems: locations,
                     annotationContent: { location in
-                    MapMarker(coordinate: location.coordinates, tint: .red)
+                    MapMarker(coordinate: location.coordinates, tint: .orange)
                 })
                     .frame(height: 380)
                     .clipShape(RoundedRectangle(cornerRadius: 30))

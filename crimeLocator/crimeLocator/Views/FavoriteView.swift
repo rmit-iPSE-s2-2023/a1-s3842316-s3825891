@@ -14,8 +14,10 @@ struct FavoriteView: View {
     
     var body: some View {
         NavigationStack {
-            VStack() {
+            VStack(spacing: 20) {
                 TitleView(title: "Favorites")
+                    .padding(.horizontal, -25)
+                    .padding(.bottom, -25)
                 Spacer()
                 if self.user.favorites.count == 0 {
                     NoFavoritesView(reports: reports, user: user)
@@ -37,6 +39,7 @@ struct FavoriteView: View {
                 Spacer()
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .padding(.horizontal, 20)
         }
     }
 }
@@ -46,7 +49,7 @@ struct FavoriteView: View {
 struct FavoriteView_Previews: PreviewProvider {
     static var previews: some View {
         let reportData = DataLoader<Report>(resource: "ReportData")
-        let user = User.getUser(email: "johndoe2@gmail.com")
+        let user = User.getUser(email: "johndoe@gmail.com")
         FavoriteView(user: user, reports: reportData.data, suburbs: user.favorites)
     }
 }
@@ -58,29 +61,32 @@ struct NoFavoritesView: View {
     var body: some View {
         
         VStack(spacing: 20.0) {
-            Image(systemName: "map")
+            Spacer()
+            Image(systemName: "binoculars")
                 .resizable()
                 .frame(width: 75.0, height: 68)
-            Text("No Saved Favorites")
+            Text("No Watch Zones")
                 .font(.body)
                 .fontWeight(.bold)
             Text("Search for any suburb and save it to favorite for future reference")
                 .font(.body)
                 .fontWeight(.thin)
                 .multilineTextAlignment(.center)
+            Spacer()
             NavigationLink(destination: SearchView(user: self.user, reports: self.reports)) {
-                Label("Find a Suburb", systemImage: "magnifyingglass")
+                Label("Add a suburb", systemImage: "magnifyingglass")
                     .fontWeight(.medium)
                     .foregroundColor(.white)
                     .padding(/*@START_MENU_TOKEN@*/.vertical, 12.0/*@END_MENU_TOKEN@*/)
                     .padding(.horizontal, 30.0)
                     .font(.title3)
+                    .frame(width: 375)
                 
             }
             .background(.green)
             .cornerRadius(50)
-            
-            
+            Spacer()
+                .frame(height: 5)
         }
         .frame(maxWidth: 275)
     }

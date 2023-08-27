@@ -115,10 +115,8 @@ struct SuburbView_Previews: PreviewProvider {
         let reportData = DataLoader<Report>(resource: "ReportData")
         let userData = DataLoader<User>(resource: "UserData")
         
-        var user = userData.data[1]
+        let user = userData.data[1]
         
-        SuburbView(suburb: reportData.data[0].suburb, reports: reportData.data.filter({
-            $0.suburb.name == reportData.data[0].suburb.name
-        }), user: user, isFavorite: false)
+        SuburbView(suburb: reportData.data[0].suburb, reports: reportData.data, user: user, isFavorite: false)
     }
 }
